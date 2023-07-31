@@ -1,63 +1,84 @@
-# poe-ultimate-database
 
-## Here we will manage the csv and corresponding files in order to host the database made by pathofmatth.
+# PoE-Ultimate-Database
 
-How to:
+## Introduction
 
-Go to: https://docs.google.com/spreadsheets/d/18WQBtmmPk7XfFnOnBb0rGN2Y7D5GFOTzD81YfdZr1vo/edit?usp=sharing -> File -> Make a Copy
+ Here we will manage the excel sheet and scripts to host the database made by pathofmatth.
 
-Go to Google Document -> Copy of PathofMatth's Database.  -> Extensions -> App Scripts -> the xeskeko script.gs (both)-> function -> FolderName = "Change to YOUR Google Drive Folder"
+## Required
 
-Go to PoE Zip -> info.ini -> League = "Change to League Name"
+AutoHotKey: https://www.autohotkey.com/
+Google Drive App: https://www.google.com/drive/download/
 
--> "sesid = POESESSID`=" -> Put your Session ID. This is required. I would log into a 2nd throw-away account on another browser from your main one,
-click "remember me" or "stay logged in" or whatever and just forget about it. If scripts act up or data is missing, make sure to log back in.
+## Setting up the Google Drive
 
--> Filepath = "change to where you will want the data exported, you will need a shared folder linked to a google drive"
+Download the google drive application and set it up to have a local folder synchronized (e.g. `C:\poe\upload`).
 
--> I would make a folder called "shared" on your C: drive and a folder called "upload" in your google drive. Scripts will do the rest.
+This folder is where the result of the local script will be exported. It will be synchronized on the cloud and shared on your google drive, enabling the scripts of the excel sheet to access the data.
 
-(This Shared Folder is what will feed your google drive with the information required to paste data in the sheet)
+## Setting up the Spreadsheet
 
-time = hours before data is updated -> You can speed this up based on how many proxies you have but 12/4/2/1 is solid to prevent errors or problems.
+Go to: https://docs.google.com/spreadsheets/d/18WQBtmmPk7XfFnOnBb0rGN2Y7D5GFOTzD81YfdZr1vo/edit?usp=sharing -> `File` -> `Make a Copy`
 
-The "killswitch.ini" file is to stop all scripts. This is useful early league when website keeps going down, the scripts will just throw constant
-pop-up errors if you let them run otherwise. 
+Go to `Google Document` -> `<name of your excel sheet>` -> `Extensions` -> `App Scripts` and change in both `xeskeko script.gs` -> `function` -> `FolderName = <upload_google_drive_folder_ID>` (the `ID` of your shared local folder on Google Drive)
 
-I would recommend around 15-20 proxies working 24/7. You will also need a server to run the script 24/7 or do like me, keep your PC on at all times.
+NOTE: is the excel sheet automatically updated? Or should the scripts be ran manually by the user.
 
-To run all scripts -> double click -> upload.ahk and all scripts will turn on, scripts will auto-restart if they fail after after a few minutes.
+## Setting up the Scripts
 
-You will need the pastebin URL list, this is what the scrips are reading in order to find queries.
+Clone the repository into `C:\poe` (this is currently required as the paths are hard-coded into the code).
 
-PoEStack NEEDS to work. No PoEStack = no data. So goodluck dealing with Zach, or have someone else build PoEStack.
+### Setting up info.ini
 
+1) `League = <current_league_name>`.
 
-Links to the URL for the Scripts:
+2) `sesid = <POESESID>`. We recommend you to create a throw away PoE account and to log in with remember my credential. To get the `POESESSID` press F12 on Firefox -> `storage`. If the script isn't updating data correctly, you might want to check that the account is still logged in your browser and that the `POESESSID` hasn't changed. This will notably happen often if your IP is dynamic.
 
-https://pastebin.com/pzrzCkMp 
-https://pastebin.com/vydwA326
-https://pastebin.com/hnhLqz26
-https://pastebin.com/ewd7Hhnf
-https://pastebin.com/DMHvYZYc
-https://pastebin.com/ZdwnEZ7t
+3) `Filepath = <path_to_your_local_upload_synchronized_google_drive_folder>` (e.g. `C:\poe\upload`).
 
-Open your own pastebin account and copy these and make your own pastebin of these URL / item / keyword lists. Title them the same as here. 
+4) `time = <hours_before_data_is_updated`. You can speed this up based on how many proxies you have but 12/4/2/1 is solid to prevent errors or problems.
 
-Then, the first 3, you will take your own pastebin URL and change the ones in "itemnew.ahk". ("scriptnew" folder)
-Do the same with the 4th pastebin in the "lab.ahk" script. ("lab" folder)
-Finally the last URL, you need to change for your own in the "meta.ahk" script. ("youtube" folder)
+### Linking Reference Data
 
-You can get your own proxies wherever you want. I used those from here: https://www.sharedproxies.com/
+To generate queries and fetch the correct data, the scripts need base line information (e.g. currency names). This information is available in:
 
-Post your proxies IP under "proxy list.txt" in the "poe" folder using the format of the example. Important to have the port!
+https://pastebin.com/pzrzCkMp (queries pt3)
+https://pastebin.com/vydwA326 (queries pt2)
+https://pastebin.com/hnhLqz26 (queries pt1)
+https://pastebin.com/ewd7Hhnf (enchants)
+https://pastebin.com/DMHvYZYc (keywords)
+https://pastebin.com/ZdwnEZ7t (content creators)
 
-Cheap & EXTREMELY reliable.
+1) Open your own pastebin account and clone these files to your own account (use the `clone`option).
+2) Update the 3 urls (`queries pt1, pt2, pt3`) in `/scriptnew/itemnew.ahk`, the one url (`enchants`) in`/lab/lab.ahk` and last 2 url (`keywords` & `content creators`) in `youtube/meta.ahk`.
+
+Note: PoEStack NEEDS to work. No PoEStack = no data. So good luck dealing with Zach, or have someone else build PoEStack.
+
+### Setting up Proxies
+
+Proxies are recommended to not be limited by the API rate limit. 15 to 20 proxies are enough to have real time data 24/7. You will also need a server to run the script 24/7 (e.g. your PC 24/7 online).
+
+You can get your own proxies wherever you want (e.g. https://www.sharedproxies.com/).
+
+Copy past the IPs of your proxies in `proxy list.txt` following the same the format of the example. It is important to have the ports!
+
+If the proxies require a login/password, it can be setup at the end of `/scriptnew/itemnew.ahk`.
+
+### Running All Scripts
+
+To run all scripts launch `upload.ahk` and all scripts will turn on, scripts will auto-restart if they fail after after a few minutes.
+
+### Stopping All Scripts
+The `killswitch.bat` file is to stop all scripts. This is useful early league when website keeps going down, the scripts will just throw constant pop-up errors if you let them run otherwise. 
+
+NOTE: THIS SEEMS TO NOT WORK ATM.
+
+### Issues & Others
 
 Honestly if you have any other issues... You're going to have to figure it out on your own, because neither myself or Xeskeko will be willing
 to put much more time into this. 
 
-Shoutout to Xeskeko for being an absolute legend, building the scripts, the excell sheets, the formulas... Everything. 
+Shout-out to Xeskeko for being an absolute legend, building the scripts, the excel sheets, the formulas... Everything. 
 
 Good luck!
 
