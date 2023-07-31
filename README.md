@@ -8,6 +8,7 @@
 ## Required
 
 AutoHotKey: https://www.autohotkey.com/
+
 Google Drive App: https://www.google.com/drive/download/
 
 ## Setting up the Google Drive
@@ -43,10 +44,15 @@ Clone the repository into `C:\poe` (this is currently required as the paths are 
 To generate queries and fetch the correct data, the scripts need base line information (e.g. currency names). This information is available in:
 
 https://pastebin.com/pzrzCkMp (queries pt3)
+
 https://pastebin.com/vydwA326 (queries pt2)
+
 https://pastebin.com/hnhLqz26 (queries pt1)
+
 https://pastebin.com/ewd7Hhnf (enchants)
+
 https://pastebin.com/DMHvYZYc (keywords)
+
 https://pastebin.com/ZdwnEZ7t (content creators)
 
 1) Open your own pastebin account and clone these files to your own account (use the `clone`option).
